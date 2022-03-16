@@ -20,7 +20,7 @@ defmodule Nftex.MixProject do
   def application do
     [
       mod: {Nftex.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ex_machina, :crypto]
     ]
   end
 
@@ -45,7 +45,9 @@ defmodule Nftex.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:absinthe, "~> 1.6"},
-      {:absinthe_phoenix, "~> 2.0"}
+      {:absinthe_phoenix, "~> 2.0"},
+      {:ex_machina, "~> 2.7.0", only: :test},
+      {:uuid, "~> 1.1", only: :test}
     ]
   end
 

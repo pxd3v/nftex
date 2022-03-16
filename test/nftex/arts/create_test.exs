@@ -18,8 +18,8 @@ defmodule Nftex.Arts.CreateTest do
       assert %Art{
         artist_name: "Pedro",
         price: 1.4,
-        id: art_id,
         hash: "xpto1234",
+        id: ^art_id,
         description: "Dolphin picture"
       } = art
     end
@@ -33,9 +33,7 @@ defmodule Nftex.Arts.CreateTest do
       }
 
       {:error, changeset} = Create.call(params)
-
-      expected_response = %{price: ["is invalid"]}
-      assert expected_response == errors_on(changeset)
+      assert %{price: ["is invalid"]} = errors_on(changeset)
     end
   end
 end
