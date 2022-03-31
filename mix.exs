@@ -20,9 +20,12 @@ defmodule Nftex.MixProject do
   def application do
     [
       mod: {Nftex.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ex_machina, :crypto]
+      extra_applications: extra_applications(Mix.env)
     ]
   end
+
+  defp extra_applications(:test), do: [:logger, :runtime_tools, :ex_machina, :crypto]
+  defp extra_applications(_), do: [:logger, :runtime_tools, :crypto]
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
@@ -47,7 +50,8 @@ defmodule Nftex.MixProject do
       {:absinthe, "~> 1.6"},
       {:absinthe_phoenix, "~> 2.0"},
       {:ex_machina, "~> 2.7.0", only: :test},
-      {:uuid, "~> 1.1", only: :test}
+      {:uuid, "~> 1.1", only: :test},
+      {:stream_data, "~> 0.5", only: :test}
     ]
   end
 
